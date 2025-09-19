@@ -56,6 +56,7 @@ task?: Task;
       console.log('✅ Task submitted:', this.taskForm.getRawValue());
     } else {
       console.log('❌ Form is invalid:', this.taskForm.value);
+      console.log('❌ Form is invalid:', this.taskForm);
       this.taskForm.markAllAsTouched();
 
    const data = {
