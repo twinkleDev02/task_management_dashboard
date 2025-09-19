@@ -7,5 +7,15 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('task-management');
+  
+  sidebarVisible: boolean = true;
+
+
+  constructor() {}
+
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+
+ 
 }

@@ -1,0 +1,93 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="">
+        <div class="">
+          <h5 class="mb-0">
+  📝 {{ task?.id ? 'Edit Task' : 'Add Task' }}
+</h5>
+        </div>
+        <div class="card-body p-4">
+          <!-- 👇 Proper ngSubmit binding -->
+         <form [formGroup]="taskForm" >
+
+  <div class="mb-3">
+    <label for="title" class="form-label fw-bold">Task Title</label>
+    <input id="title" type="text" class="form-control" formControlName="title" placeholder="e.g., Complete project report">
+    @if (f['title'].invalid && f['title'].touched) {
+      <div class="text-danger small mt-1">
+        @if (f['title'].errors?.['required']) {
+          <div>Title is required.</div>
+        }
+        @if (f['title'].errors?.['minlength']) {
+          <div>Title must be at least 3 characters.</div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label fw-bold">Description</label>
+    <textarea id="description" rows="4" class="form-control" formControlName="description"
+              placeholder="A brief description of the task..."></textarea>
+    @if (f['description'].invalid && f['description'].touched) {
+      <div class="text-danger small mt-1">
+        @if (f['description'].errors?.['required']) {
+          <div>Description is required.</div>
+        }
+        @if (f['description'].errors?.['minlength']) {
+          <div>Must be at least 10 characters.</div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="dueDate" class="form-label fw-bold">Due Date</label>
+      <input id="dueDate" type="date" class="form-control" formControlName="dueDate">
+      @if (f['dueDate'].invalid && f['dueDate'].touched) {
+        <div class="text-danger small mt-1">
+          @if (f['dueDate'].errors?.['required']) {
+            <div>Due date is required.</div>
+          }
+        </div>
+      }
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="priority" class="form-label fw-bold">Priority</label>
+      <select id="priority" class="form-select" formControlName="priority">
+        <option value="" disabled>Select priority</option>
+        <option value="High">High 🔴</option>
+        <option value="Medium">Medium 🟡</option>
+        <option value="Low">Low 🟢</option>
+      </select>
+      @if (f['priority'].invalid && f['priority'].touched) {
+        <div class="text-danger small mt-1">
+          @if (f['priority'].errors?.['required']) {
+            <div>Priority is required.</div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="status" class="form-label fw-bold">Status</label>
+    <select id="status" class="form-select" formControlName="status">
+      <option value="Pending">Pending ⏳</option>
+      <option value="Completed">Completed ✅</option>
+    </select>
+  </div>
+
+  <div class="text-end mt-4">
+    <button type="button" class="btn btn-primary px-4" (click)="onSubmit()" >
+      <i class="bi bi-plus-circle me-2"></i> Save Task
+    </button>
+  </div>
+</form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

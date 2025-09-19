@@ -1,7 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+    {
+    path: '',
+    redirectTo: 'dashboard',  // redirect empty path to 'dashboard'
+    pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard-routing-module').then(
+        (m) => m.DashboardRoutingModule
+      ),
+  },
+    {
+    path: 'tasks',
+    loadChildren: () =>
+      import('./modules/task-management/task-management-routing-module').then(
+        (m) => m.TaskManagementRoutingModule
+      ),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
