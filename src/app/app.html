@@ -1,41 +1,27 @@
-<div class="d-flex" style="height: 100vh; width: 100vw;">
-  
-  <!-- Sidebar -->
-  <div class="sidebar d-flex flex-column p-3 bg-white shadow-sm border-end" style="width: 250px;">
-    <div class="d-flex align-items-center mb-4">
-      <span class="fs-4 fw-bold text-primary">Task Management</span>
+<mat-toolbar color="primary" class="app-toolbar">
+  <button mat-icon-button (click)="drawer.toggle()" aria-label="Toggle sidenav">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="title">Task Management</span>
+  <span class="spacer"></span>
+  <!-- <a mat-button routerLink="/tasks">Tasks</a> -->
+</mat-toolbar>
+
+@if (loading$ | async) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<mat-sidenav-container class="app-container">
+  <mat-sidenav #drawer="matSidenav" mode="side" [opened]="true">
+    <mat-nav-list>
+       <a mat-list-item routerLink="dashboard" routerLinkActive="active">Dashboard</a>
+      <a mat-list-item routerLink="tasks" routerLinkActive="active">All Tasks</a>
+      <a mat-list-item routerLink="tasks/add" routerLinkActive="active">Add Task</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet />
     </div>
-
-    <ul class="nav nav-pills flex-column mb-auto">
-<li class="nav-item mb-2">
-        <a class="nav-link d-flex align-items-center text-dark fw-medium" 
-           routerLink="/dashboard" >
-          <i class="pi pi-cog me-2"></i> Dashboard
-        </a>
-      </li>
-
-      <li class="nav-item mb-2">
-        <a class="nav-link d-flex align-items-center text-dark fw-medium" 
-           routerLink="/tasks" >
-          <i class="pi pi-chart-line me-2"></i> All Tasks
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a class="nav-link d-flex align-items-center text-dark fw-medium" 
-           routerLink="/tasks/add" >
-          <i class="pi pi-briefcase me-2"></i> Add Task
-        </a>
-      </li>
-     
-      
-    </ul>
-  </div>
-
-  <!-- Page Content -->
-  <div class="flex-grow-1 overflow-auto p-4 bg-light">
-    
-
-    <!-- Dynamic Angular content -->
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

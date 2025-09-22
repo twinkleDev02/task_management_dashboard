@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { LoadingService } from './shared/service/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  
-  sidebarVisible: boolean = true;
-
-
-  constructor() {}
-
-  toggleSidebar() {
-    this.sidebarVisible = !this.sidebarVisible;
-  }
-
- 
+  protected readonly title = signal('task-management');
+  private readonly loading: LoadingService = inject(LoadingService);
+  protected readonly loading$ = this.loading.loading$;
 }
