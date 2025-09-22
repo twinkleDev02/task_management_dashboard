@@ -36,12 +36,8 @@
             "styles": [
               "src/styles.scss",
                "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
+           
           },
           "configurations": {
             "production": {
@@ -57,12 +53,19 @@
                   "maximumError": "10kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+               "optimization": false,
+      "extractLicenses": false,
+      "sourceMap": true,
+      "prerender": false, 
+      "ssr": false
             },
             "development": {
               "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+      "extractLicenses": false,
+      "sourceMap": true,
+      "prerender": false, 
+      "ssr": false
             }
           },
           "defaultConfiguration": "production"
